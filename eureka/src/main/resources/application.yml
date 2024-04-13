@@ -3,20 +3,9 @@ server:
 
 spring:
   application:
-    name: discovery
+    name: discoveryservice
 
 eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
-  server:
-    eviction-interval-timer-in-ms: 10000
-
-management:
-  endpoint:
-    shutdown:
-      enabled: true
-  endpoints:
-    web:
-      exposure:
-        include: shutdown

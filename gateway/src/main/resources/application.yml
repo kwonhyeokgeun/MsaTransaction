@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8088
 
 eureka:
   instance:
@@ -20,9 +20,7 @@ spring:
           predicates:
             - Path=/paypoint/**
           uri: lb://PAYPOINT
-        - id: management
-          predicates:
-            - Path=/management/**
-          uri: lb://MANAGEMENT
-
-
+#        - id: management
+#          predicates:
+#            - Path=/management/**
+#          uri: lb://MANAGEMENT
