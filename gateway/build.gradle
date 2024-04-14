@@ -21,25 +21,23 @@ repositories {
 	mavenCentral()
 }
 
-ext {
-	set('springCloudVersion', "2023.0.1")
-}
-
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	//implementation 'org.springframework.cloud:spring-cloud-starter-gateway-mvc'
-	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+	//implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	// gateway
-	//implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
-	// Openfeign
-	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+	//testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
 	// actuator
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator:3.2.1'
+	// eureka
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+	// gateway
+	implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+}
+ext {
+	set('springCloudVersion', "2023.0.1")
 }
 
 dependencyManagement {
