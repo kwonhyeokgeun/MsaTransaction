@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/a")
+@RequestMapping("/paypoint")
 public class PaypointController {
+    @GetMapping("/welcome")
+    public String welcome() {
 
-    @GetMapping("/a")
-    void test(){
-        System.out.println("!!!!");
+        return "Welcome to the First service.";
     }
 }
