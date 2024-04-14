@@ -26,22 +26,24 @@ public class ManagementService {
     private final ObjectMapper objectMapper;
 
     public EatResDto eat(EatReqDto reqDto) throws PaypointException, ManagementException {
+        //feign요청
         ResponseEntity<CustomBody> responseEntity = paypointServiceClient.buy(BuyReqDto.builder()
                 .memberId(reqDto.getMemberId())
                 .code(reqDto.getCode())
                 .mount(reqDto.getMount())
                 .build()
             );
+        //feign요청 문제시
         if(responseEntity.getStatusCode() != HttpStatus.OK)
             throw new PaypointException("");
         Object data =  responseEntity.getBody().getData();
         BuyResDto buyResDto = objectMapper.convertValue(data, BuyResDto.class);
-        System.out.println(buyResDto);
 
         Long payLogId= buyResDto.getPayLogId();
+        //음식먹는 로직 수행
+        //에러시 롤백을 위한 exception발생
         Optional.ofNullable(managementRepository.eat())
                 .orElseThrow(()->new ManagementException(payLogId, ""));
-
 
         return EatResDto.builder()
                 .build();
