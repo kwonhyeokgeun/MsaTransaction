@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/MsaTransaction.iml" filepath="$PROJECT_DIR$/.idea/MsaTransaction.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gateway.main.iml" filepath="$PROJECT_DIR$/.idea/modules/gateway.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/management.main.iml" filepath="$PROJECT_DIR$/.idea/modules/management.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/paypoint.main.iml" filepath="$PROJECT_DIR$/.idea/modules/paypoint.main.iml" />
     </modules>
   </component>
 </project>

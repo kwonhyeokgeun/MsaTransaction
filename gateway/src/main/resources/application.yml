@@ -1,9 +1,7 @@
 server:
-  port: 8088
+  port: 8000
 
 eureka:
-  instance:
-    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}}
   client:
     register-with-eureka: true
     fetch-registry: true
@@ -12,15 +10,15 @@ eureka:
 
 spring:
   application:
-    name: gateway
+    name: apigateway-service
   cloud:
     gateway:
       routes:
         - id: paypoint
+          uri: lb://PAYPOINT
           predicates:
             - Path=/paypoint/**
-          uri: lb://PAYPOINT
-#        - id: management
-#          predicates:
-#            - Path=/management/**
-#          uri: lb://MANAGEMENT
+        - id: management
+          predicates:
+            - Path=/management/**
+          uri: lb://MANAGEMENT
