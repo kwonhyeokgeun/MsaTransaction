@@ -30,7 +30,6 @@ public class KafkaConsumer {
                     .memberId(dto.getMemberId())
                     .payLogId(dto.getPayLogId())
                     .build());
-
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

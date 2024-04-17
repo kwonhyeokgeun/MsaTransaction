@@ -49,7 +49,5 @@ public class ManagementController {
             );
             return ResponseEntity.ok(new CustomBody(StatusEnum.OK, ResMsg.INTERNAL_SERVER_ERROR, null));
         }
-
-
     }
 }

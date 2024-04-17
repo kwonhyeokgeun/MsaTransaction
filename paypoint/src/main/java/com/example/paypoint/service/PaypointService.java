@@ -17,7 +17,7 @@ public class PaypointService {
     public Map<Long,Integer> payLog = new HashMap<>();
 
     public BuyResDto buy(BuyReqDto reqDto){
-        paypoint+=reqDto.getMount();
+        paypoint-=reqDto.getMount();
         payLog.put(payLogId,reqDto.getMount());
         System.out.println("구매처리");
         System.out.println("paypoint : " + paypoint);
@@ -31,7 +31,7 @@ public class PaypointService {
     public BuyResDto buyRollback(BuyRollbackReqDto reqDto){
         Integer mount = payLog.get(reqDto.getPayLogId());
         payLog.remove(reqDto.getPayLogId());
-        paypoint -= mount;
+        paypoint += mount;
         System.out.println("롤백처리");
         System.out.println("paypoint : " + paypoint);
         System.out.println("log : " + payLog);
