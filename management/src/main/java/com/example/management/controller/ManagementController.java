@@ -2,6 +2,7 @@ package com.example.management.controller;
 
 import com.example.management.client.PaypointServiceClient;
 import com.example.management.dto.request.BuyReqDto;
+import com.example.management.dto.request.BuyRollbackKfkDto;
 import com.example.management.dto.request.BuyRollbackReqDto;
 import com.example.management.dto.request.EatReqDto;
 import com.example.management.dto.response.EatResDto;
@@ -10,6 +11,7 @@ import com.example.management.exception.PaypointException;
 import com.example.management.global.CustomBody;
 import com.example.management.global.ResMsg;
 import com.example.management.global.StatusEnum;
+import com.example.management.kafka.KafkaProducer;
 import com.example.management.service.ManagementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 public class ManagementController {
 
     private final ManagementService managementService;
+    private final KafkaProducer kafkaProducer;
 
     @GetMapping("/welcome")
     public String welcome() {
@@ -39,6 +42,11 @@ public class ManagementController {
         }catch (ManagementException e){
             Long payLogId = e.payLogId;
             //System.out.println(payLogId);
+            kafkaProducer.sendMessage(
+                    BuyRollbackKfkDto.builder()
+                        .memberId(reqDto.getMemberId())
+                        .payLogId(payLogId).build()
+            );
             return ResponseEntity.ok(new CustomBody(StatusEnum.OK, ResMsg.INTERNAL_SERVER_ERROR, null));
         }
 
